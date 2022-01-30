@@ -1,7 +1,7 @@
 function Newproject(){
     return (
         <>
-
+       New project
         </>
     )
 }

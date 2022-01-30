@@ -2,7 +2,7 @@
 function Company(){
     return (
         <>
-
+        Company
         </>
     )
 }
