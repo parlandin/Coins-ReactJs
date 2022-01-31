@@ -4,7 +4,10 @@ function Select({ value ,text, name, options, handleOnChange}) {
     return (
         <div className="form_Control">
             <label className="label" htmlFor={name}>{text}</label>
-            <select name={name} id={name} >
+            <select name={name} 
+            id={name} 
+            onChange={handleOnChange}
+            value={value || ""}>
 
                 <option >Selecione uma opção</option>
 
