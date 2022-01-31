@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom"
 import ProjectForm from "../../Components/Forms/ProjectForm"
-import ResquestApi from "../../Components/RequestApi"
+import PostMethod from "../../Components/RequestApi/PostMethod"
 import styles from "./newproject.css"
 
 function Newproject(){
     
-    /* const navigate = useNavigate() */
-    const dados = ResquestApi()
+    const navigate = useNavigate() 
+   
 
     function createPost(projects) {
         projects.cost = 0
         projects.services = []
-
-        dados("projects", "POST", JSON.stringify(projects))
+        PostMethod("projects", "POST", JSON.stringify(projects) )
+        navigate("/projects")
         
     }
 

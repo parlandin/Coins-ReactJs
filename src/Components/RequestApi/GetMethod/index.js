@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 
 
-function ResquestApi(endpoints, method, body={}) {
+function ResquestApi(endpoints, method) {
 
     const [dateResult, setDateResult] = useState([])
  
@@ -10,7 +10,6 @@ function ResquestApi(endpoints, method, body={}) {
         fetch(`http://localhost:5000/${endpoints}`, {
         method: `${method}`,
         headers: {"content-Type": "application/json",},
-        body: body.lenth > 0 ? body : null ,
     })
         .then ((res) => res.json())
         .then((date) => setDateResult(date))
