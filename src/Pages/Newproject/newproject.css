@@ -1,0 +1,15 @@
+.newprojetc_container {
+    width: 450px;
+    margin: 0 auto;
+    padding:3em;
+}
+
+.newprojetc_container h1 {
+    font-size: 2.1em;
+    margin-bottom: 0.5em;
+}
+
+.newprojetc_container p {
+    font-size: 1.1em;
+    color: #7b7b7b;
+}

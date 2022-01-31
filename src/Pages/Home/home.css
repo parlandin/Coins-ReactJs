@@ -14,8 +14,9 @@
 
 .home_container h1 span {
    color: #FFBB33;
-   padding: 0.1em;
+   padding: 0.1em 0.3em;
    background-color: #222;
+   border-radius: 8px;
 }
 
 .home_image{
