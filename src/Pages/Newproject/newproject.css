@@ -2,6 +2,7 @@
     width: 450px;
     margin: 0 auto;
     padding:3em;
+    height: 75vh;
 }
 
 .newprojetc_container h1 {
@@ -12,4 +13,5 @@
 .newprojetc_container p {
     font-size: 1.1em;
     color: #7b7b7b;
+    margin-bottom: .8em;
 }

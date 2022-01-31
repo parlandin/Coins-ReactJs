@@ -1,24 +1,45 @@
+import React, {useState, useEffect} from "react"
+
 import styles from "./project.css"
 import Input from "../../Input/index."
+import Select from "../../Select"
+import SubmitButton from "../../Button/SubmitButton"
 
-function ProjectForm() {
+function ProjectForm( {btnText}) {
+    
+    const [categories, setCategories] = useState([])
+    const [Loanding, setLoanding] = useState(false)
+    
+
+    useEffect(() => {
+        fetch("http://localhost:5000/categories", {
+        method: "GET",
+        headers: {"content-Type": "application/json",}
+    })
+        .then ((res) => res.json())
+        .then((date) => setCategories(date))
+        .catch((err) => console.log(err))
+        /* .finally( () => setLoanding(true)) */
+    }, [])
+
+
     return (
     <form>
-        <Input type="text" placeholder="Insira algo" text="ola" />
-        <div>
-            <input type="text" placeholder="Insira o nome do projeto" />
-        </div>
+        <Input 
+        type="text" 
+        text="Nome do projeto" 
+        name="name"
+        placeholder="Insira o nome do projeto" />
 
-        <div>
-            <input type="number" placeholder="Insira o orçamento total" />
-        </div>
+        <Input 
+        type="Number" 
+        text="Orçamento do projeto" 
+        name="budget"
+        placeholder="Insira o orçamento do projeto" />
         
-        <select name="category_id" >
-            <option disabled>Selecione a categoria</option>
-        </select>
-        <div>
-            <input type="submit" value="Criar projeto" onClick={(e) => e.preventDefault()} />
-        </div>
+        {/* Loanding &&  */<Select name="category_id" text="Selecione a categoria" options={categories} />}
+
+        <SubmitButton text={btnText} />
     </form>
     )
 }

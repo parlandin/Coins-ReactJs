@@ -4,18 +4,15 @@
     margin-bottom: 1em;
 }
 
-.label{
-    margin-bottom: .6em ;
+.label {
+    margin-bottom: .6em;
     font-weight: bold;
 }
 
 
-.form_Control input {
+.form_Control select{
     padding: .7em;
     border-radius: 0;
     border: none;
 }
 
-.form_Control input::placeholder {
-    color: #7b7b7b;
-}
