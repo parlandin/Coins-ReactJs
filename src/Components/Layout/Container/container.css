@@ -10,6 +10,10 @@
     min-height: 85vh;
 }
 
+.flex_center {
+    justify-content: center;
+}
+
 .start {
     justify-content: flex-start;
 }

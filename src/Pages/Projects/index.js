@@ -6,25 +6,50 @@ import LinkButton from "../../Components/Button/LinkButton"
 import ProjectsCards from "../../Components/ProjectsCards"
 import React, { useState, useEffect } from "react"
 import GetMethod from "../../Components/RequestApi/GetMethod"
-
+import Loading from "../../Components/Layout/Loading"
+import PostMethod from "../../Components/RequestApi/PostMethod"
 
 function Projects() {
     const [projects, setProjects] = useState([])
-
-    const date =  GetMethod("projects", "GET")
-    console.log()
-
+    
     const [loading, setLoading] = useState(true)
+    const date =  GetMethod("projects", "GET")
+    const [dataBase, setDataBase] = useState(date)
+
 
     useEffect(() => {
-        setLoading(false)
+        setDataBase((currentValue) => {
+            if(currentValue.length < 1){
+                return date
+            } else {
+                return dataBase
+            }
+        })
+        console.log("atualizou:", dataBase )
+        //simulação carregamento
+        const timer = setTimeout(() => {
+            setLoading(false)
+        },300)
+
+        return ()=> clearTimeout(timer) 
 
     }, [date])
     
+
+
+    const [projectMessage, setProjectMessage] = useState("")
+
     const location = useLocation()
     let message = ""
     if(location.state){
         message = location.state.message
+    }
+
+
+    function RemoveProjects(id){
+        PostMethod(`projects/${id}`, "DELETE")
+        setDataBase((currentValue) => currentValue.filter((element) => element.id != id))
+        setProjectMessage("Projeto Removido com sucesso!")
     }
 
 
@@ -39,23 +64,31 @@ function Projects() {
                 <MensagenSystem type={"success"} msg={message} />
             }
 
-            <Container>
+            {projectMessage && 
+                <MensagenSystem type={"success"} msg={projectMessage} />
+            }
+
+
+            <Container CustomClass="start">
                 {loading 
-                ? ( "carregando...") 
-                : (date.length > 0 &&(
-                        date.map((element) => {
+                ? ( <Loading />) 
+                : (dataBase.length > 0 &&(
+                        dataBase.map((element) => {
                             return ( 
                             <ProjectsCards 
                             key={element.id}
+                            id = {element.id}
                             name ={element.name}
                             budget={element.budget}
-                            category={element.category.name} /> )
-
+                            category={element.category.name}
+                            handleRemove={RemoveProjects} /> )
                         })
                     )
-                )}
+                )}  
                 
-                
+            {!loading && dataBase.length ===0 &&
+                (<p>Não há projetos cadastrados.</p>)
+            }
             </Container>
        </div>
     )
