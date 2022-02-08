@@ -12,7 +12,7 @@ function Newproject(){
         projects.cost = 0
         projects.services = []
         PostMethod("projects", "POST", JSON.stringify(projects) )
-        navigate("/projects")
+        navigate("/projects",{ state: {message: 'Projeto criado com sucesso!'}})
         
     }
 

@@ -5,23 +5,22 @@ import Input from "../../Input/index."
 import Select from "../../Select"
 import SubmitButton from "../../Button/SubmitButton"
 
-import RequestApi from "../../RequestApi/GetMethod"
+import GetMethod from "../../RequestApi/GetMethod"
 
 function ProjectForm( {btnText, handleSubmit, projectData}) {
     
     const [categories, setCategories] = useState([])
     const [project, setProject] = useState(projectData || "")
 
-    const dados =  RequestApi("categories", "GET")
+    const dados =  GetMethod("categories", "GET")
 
     const Submit = (e) => {
         e.preventDefault()
-        console.log(project)
+       
         handleSubmit(project)
     }
 
     function handleChange(e){
-        console.log(project)
         setProject({...project, [e.target.name]: e.target.value })
     }
 
@@ -30,7 +29,7 @@ function ProjectForm( {btnText, handleSubmit, projectData}) {
             id: e.target.value,
             name: e.target.options[e.target.selectedIndex].text,
         }})
-        console.log(project)
+       
     }
 
 
@@ -56,7 +55,7 @@ function ProjectForm( {btnText, handleSubmit, projectData}) {
         text="Selecione a categoria" 
         options={dados}
         handleOnChange={handleCategory} 
-        value={project.category ? project.category : ""}/>}
+        value={project.category ? project.category.id : ""}/>}
 
         <SubmitButton text={btnText} />
     </form>

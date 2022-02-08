@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 
 
-function ResquestApi(endpoints, method) {
+function GetMethod(endpoints, method) {
 
     const [dateResult, setDateResult] = useState([])
  
@@ -25,4 +25,4 @@ function ResquestApi(endpoints, method) {
 }
 
 
-export default ResquestApi
+export default GetMethod

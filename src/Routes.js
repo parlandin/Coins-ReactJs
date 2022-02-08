@@ -16,7 +16,7 @@ function Routers(){
         <Router>
             <Navbar />
 
-            <Container  >
+            <Container  CustomClass={"min-height"}>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/projects" element={<Projects />} />

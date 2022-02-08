@@ -5,7 +5,7 @@ function Input({ type, value ,text, name, placeholder, handleOnChange}) {
         <div className="form_Control">
             <label className="label" htmlFor={name}>{text}</label>
             <input id={name} type={type} value={value} placeholder={placeholder}
-            onChange={handleOnChange}/>
+            onChange={handleOnChange} name={name}/>
         </div>
     )
 }
