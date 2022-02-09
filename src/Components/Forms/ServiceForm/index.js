@@ -10,8 +10,10 @@ function ServiceForm({handleSubmit, btnText, projectData}){
 
     function submit(e){
         e.preventDefault()
-        setListeService([...listService, service])
-        projectData.services = listService
+        /* setListeService([...listService, service])
+        projectData.services = listService */
+        
+        projectData.services.push(service)
         handleSubmit(projectData)
     }
 

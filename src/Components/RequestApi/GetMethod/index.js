@@ -14,8 +14,7 @@ function GetMethod(endpoints, method) {
         .then ((res) => res.json())
         .then((date) => setDateResult(date))
         .catch((err) => console.log(err))
-        .finally(() => { 
-            console.log("true") })
+        .finally(() => {})
 
     }, [])
 

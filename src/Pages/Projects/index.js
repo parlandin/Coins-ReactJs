@@ -25,7 +25,7 @@ function Projects() {
                 return dataBase
             }
         })
-        console.log("atualizou:", dataBase )
+        
         //simulação carregamento
         const timer = setTimeout(() => {
             setLoading(false)

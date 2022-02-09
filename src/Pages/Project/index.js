@@ -8,11 +8,13 @@ import ProjectForm from "../../Components/Forms/ProjectForm"
 import MensagenSystem from "../../Components/Layout/MensagenSystem"
 import ServiceForm from "../../Components/Forms/ServiceForm"
 import {parse, v4 as uuidv4} from "uuid"
+import ServiceCard from "../../Components/ServiceCard"
 
 function Project(){
     const  { id } = useParams()
     const date = GetMethod(`projects/${id}`, "GET")
     const [project, setProject] = useState([])
+    const [services, setServices] = useState([])
     const [loading, setLoading] = useState(true)
     const [showProjectForm, setShowProjectForm] = useState(false)
     const [showServiceForm, setShowServiceForm] = useState(false)
@@ -22,6 +24,8 @@ function Project(){
 
     useEffect(()=> {
         setProject(date)
+        setServices(date.services)
+       
 
         //simulação carregamento
         const timer = setTimeout(() => {
@@ -56,34 +60,79 @@ function Project(){
         headers: {"content-Type": "application/json",},
         body: JSON.stringify(project)
         })
-          .then ((res) => res.json())
-          .then((date) =>{
-               setProject(date)
-               setShowProjectForm(false)
+          .then (async(res) =>{
+                setProject(await res.json())
+                setShowProjectForm(false)
 
                 setMessage("Projeto atualizado")
-                setType("success") 
+                setType("success")
           })
-          .catch((err) => console.log(err))
+          .then((date) =>{})
+
    }
 
 
     function createService(project){
         setMessage("")
         const lastService = project.services[project.services.length  -1]
-        console.log(project.services)
+       
+
         lastService.id = uuidv4()
 
         const lastServiceCost = lastService.cost
         const newCost  = parseFloat(project.cost) + parseFloat(lastServiceCost)
 
+
         if(newCost > parseFloat(project.budget)){
             setMessage("Orçamento ultrapassado, verifique o valor do serviço")
             setType("error")
             project.services.pop()
+           
             return false
         }
+
+        project.cost = newCost
+
+        
+        fetch(`http://localhost:5000/projects/${project.id}`, {
+        method: "PATCH",
+        headers: {"content-Type": "application/json",},
+        body: JSON.stringify(project)
+        })
+          .then (async (res) => {
+              console.log(await res.json()) 
+              setShowServiceForm(false)
+              setMessage("Serviço adicionado com sucesso")
+              setType("success")
+            })
+          .catch((error)=> console.log("error:", error))
     }
+
+    function removeService(id, cost){
+        const servicesUpdate = project.services.filter((service) => service.id != id)
+
+
+
+        const projectUpdate = project
+        projectUpdate.services = servicesUpdate
+        projectUpdate.cost = parseFloat(projectUpdate.cost) - parseFloat(cost)
+
+    
+        fetch(`http://localhost:5000/projects/${projectUpdate.id}`, {
+        method: "PATCH",
+        headers: {"content-Type": "application/json",},
+        body: JSON.stringify(projectUpdate)
+        })
+          .then (async (res) => {
+              setProject(await res.json())
+              setMessage( "Serviço removido")
+              setType("success")
+            })
+          .catch((error)=> console.log("error:", error))
+        
+    }
+
+
 
     return (
        <>
@@ -134,8 +183,23 @@ function Project(){
                     </div>
 
                     <h2>Serviços</h2>
+                    {message && <MensagenSystem msg={message} type={type} />}
+
                     <Container CustomClass="start with_cem">
-                        <p>lista de serviços</p>
+                        {project.services.length > 0 && 
+                            services.map((service) => (
+                                <ServiceCard
+                                id={service.id}
+                                name={service.name}
+                                cost={service.cost}
+                                description={service.description}
+                                key={service.id}
+                                handleRemove={removeService}/>
+                            ))
+                         }
+
+                        {project.services.length == 0 &&
+                        <p>Não há serviços cadastrados.</p> }
                     </Container>
 
                 </Container>
