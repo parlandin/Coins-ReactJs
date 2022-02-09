@@ -36,7 +36,7 @@ Yarn:
 yarn  add
 ```
 
-## ☕ Usando <nome_do_projeto>
+## ☕ Usando o projeto
 
 Para usar , siga estas etapas:
 
