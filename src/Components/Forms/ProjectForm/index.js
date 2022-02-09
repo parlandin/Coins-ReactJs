@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
 
 import styles from "./project.css"
-import Input from "../../Input/index."
+import Input from "../../Input"
 import Select from "../../Select"
 import SubmitButton from "../../Button/SubmitButton"
 
