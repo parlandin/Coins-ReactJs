@@ -12,7 +12,7 @@ function ServiceCard({id, cost, name, handleRemove, description}){
         <div className="project_card">
             <h4>{name}</h4>
             <p>
-                <span>Custo Total:</span> R$ {cost}
+                <span>Custo Total:</span> R$ {new Intl.NumberFormat('BRL', { maximumSignificantDigits: 3 }).format(cost)}
             </p>
             <p> {description} </p>
             <div className="project_card_actions">

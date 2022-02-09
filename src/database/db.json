@@ -1,39 +1,5 @@
 {
-  "projects": [
-    {
-      "name": "Primeiro",
-      "budget": "50300",
-      "category": {
-        "id": "5",
-        "name": "Front-End"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 1
-    },
-    {
-      "name": "python",
-      "budget": "5000",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 2
-    },
-    {
-      "name": "Cria aplicativo React Native",
-      "budget": "90000",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 3
-    }
-  ],
+  "projects": [],
   "categories": [
     {
       "id": 1,

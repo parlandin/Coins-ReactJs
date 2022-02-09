@@ -1,3 +1,4 @@
+
 .logo {
     max-width: 130px;
 }
@@ -19,6 +20,8 @@ img {
     display: flex;
     list-style: none;
     align-items: center;
+    transition: .5s;
+    
 }
 
 .item + .item{
@@ -33,4 +36,111 @@ img {
 
 .item a:hover {
     color: #ffBB33;
+}
+
+.button_mobile{
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    min-width: 30px;
+}
+
+.menu_mobile {
+    background-color: white;
+    width: 30px;
+    height: 4px;
+    position: absolute;
+    right: 0;  
+    transition: 0.5s;
+    border-radius: 2px;
+    box-shadow:  0px -1px 1px rgba(255, 255, 255, 0.534);
+    z-index: 5;
+}
+
+.menu_mobile::before {
+    display: block;
+    content:" ";
+    background-color: white;
+    width: 30px;
+    height: 4px;
+    position: absolute;
+    right: 0;
+    bottom:10px;
+    transition: 0.5s;
+    border-radius: 2px;
+    box-shadow:  0px -1px 1px rgba(255, 255, 255, 0.534);
+
+}
+
+
+.menu_mobile::after {
+    display: block;
+    content:" ";
+    background-color: white;
+    width: 30px;
+    height: 4px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    transition: 0.5s;
+    border-radius: 2px;
+    box-shadow:  0px -1px 1px rgba(255, 255, 255, 0.534);
+
+}
+
+.button_mobile.active  .menu_mobile {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.button_mobile.active  .menu_mobile::before {
+    transform: rotate(45deg);
+    bottom: 0;
+}
+
+.button_mobile.active  .menu_mobile::after {
+    transform: rotate(133deg);
+    top: 0;
+}
+
+
+
+.list.active {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.808);
+    width: 100vw;
+    visibility: visible;
+    z-index: 2;
+    display: flex;
+    right: 0;
+    top: 0; 
+}
+
+.list.active li {
+    padding: 15px;
+}
+
+
+
+@media (max-Width: 481px) {
+    .list {
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        background-color: transparent;
+        width: 0;
+        height: 100vh;
+        justify-self: end;
+        visibility: hidden;
+        flex-direction: column;
+        right: 50px;
+        font-size: 1.5em;
+    }
+
+    .button_mobile {
+        display: block;
+    }
+    
 }

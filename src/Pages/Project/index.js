@@ -125,6 +125,7 @@ function Project(){
         })
           .then (async (res) => {
               setProject(await res.json())
+              setServices(servicesUpdate)
               setMessage( "Serviço removido")
               setType("success")
             })
@@ -154,10 +155,15 @@ function Project(){
                                         <span>Categoria:</span> {project.category.name}
                                     </p>
                                     <p>
-                                        <span>Total de Orçamento:</span> R$ {project.budget}
+                                        <span>Total de Orçamento:</span> R$ {
+                                            new Intl.NumberFormat('BRL', { maximumSignificantDigits: 3 }).format(project.budget)
+                                        }
+                                        
                                     </p>
                                     <p>
-                                        <span>Total Utilizado:</span>R$ {project.cost}
+                                        <span>Total Utilizado:</span>R$ {
+                                            new Intl.NumberFormat('BRL', { maximumSignificantDigits: 3 }).format( project.cost)
+                                        }
                                     </p>
                              </div>)
 
