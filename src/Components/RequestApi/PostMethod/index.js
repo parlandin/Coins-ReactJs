@@ -1,3 +1,4 @@
+import Reac, {useState} from "react"
 
 function PostMethod(endpoints, method, body) {
 
@@ -7,12 +8,9 @@ function PostMethod(endpoints, method, body) {
         body: body
         })
             .then ((res) => res.json())
-            .then((date) => {})
+            .then(async (date) => {})
             .catch((err) => console.log(err))
-            .finally((algo) => { 
-                console.log("true mandou dados:", algo)})
-
-    return []
+        return []
 
 }
 

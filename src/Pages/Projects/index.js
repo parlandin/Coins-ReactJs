@@ -50,6 +50,12 @@ function Projects() {
         PostMethod(`projects/${id}`, "DELETE")
         setDataBase((currentValue) => currentValue.filter((element) => element.id != id))
         setProjectMessage("Projeto Removido com sucesso!")
+
+        
+        const time = setTimeout(()=> {
+            setProjectMessage("")
+        }, 1000)
+        return ()=> clearTimeout(time)
     }
 
 

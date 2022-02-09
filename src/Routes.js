@@ -4,11 +4,13 @@ import Company from "./Pages/Company"
 import Contact from "./Pages/Contact"
 import Newproject from "./Pages/Newproject"
 import Projects from "./Pages/Projects"
+import Project from "./Pages/Project"
 
 
 import Container from "./Components/Layout/Container"
 import Navbar from "./Components/Layout/Navbar"
 import Footer from "./Components/Layout/Footer"
+
 
 
 function Routers(){
@@ -23,6 +25,7 @@ function Routers(){
                     <Route path="/company" element={<Company />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/newproject" element={<Newproject />} />
+                    <Route path="/project/:id" element={<Project />} />
 
                 </Routes>
             </Container>

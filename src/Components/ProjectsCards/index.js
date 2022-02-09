@@ -14,7 +14,7 @@ function ProjectsCards({id, name, budget, category, handleRemove,}){
                 <span></span>{category}
             </p>
             <div className="project_card_actions">
-                <Link to="/edit">
+                <Link to={`/project/${id}`}>
                     <BsPencil /> Editar
                 </Link>
 
