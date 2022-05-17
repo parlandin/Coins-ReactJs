@@ -13,7 +13,6 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [ ] Adicionar banco de dados.
 - [ ] Criar tela de login.
 - [ ] Cria sistema de login
-- [ ] Testes
 
 ## 💻 Pré-requisitos
 
